@@ -17,6 +17,9 @@ on:
           - 'false'
           - 'true'
 
+env:
+  # 兼容 Node.js 版本迁移警告
+  ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: node20
 jobs:
   generate-brief:
     runs-on: ubuntu-latest
