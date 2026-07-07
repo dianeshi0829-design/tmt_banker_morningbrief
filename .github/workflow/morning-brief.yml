@@ -3,7 +3,7 @@ name: TMT Morning Brief - Daily Generation & Push
 on:
   # 每天早上8:00 UTC+8 运行 (对应 UTC 00:00)
   schedule:
-    - cron: '0 0 * * 1-5'  # 周一至周五 UTC 00:00 = 北京时间 8:00
+    - cron: '0 0 * * 1-7'  # 周一至周日 UTC 00:00 = 北京时间 8:00
   
   # 允许手动触发
   workflow_dispatch:
