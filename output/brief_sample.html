@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TMT Morning Brief - 2026-07-07</title>
+<style>
+    @media only screen and (max-width: 600px) {
+        .container { width: 100% !important; }
+        .metric-box { width: 48% !important; margin-bottom: 8px; }
+        .headline { font-size: 15px !important; }
+    }
+    body { margin: 0; padding: 0; background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+    .container { max-width: 720px; margin: 0 auto; background-color: #0f172a; color: #e2e8f0; }
+    .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 32px 24px; text-align: center; border-bottom: 3px solid #3b82f6; }
+    .header h1 { margin: 0; font-size: 24px; font-weight: 700; color: #f8fafc; letter-spacing: 0.5px; }
+    .header .subtitle { margin-top: 8px; font-size: 13px; color: #94a3b8; }
+    .header .date { margin-top: 4px; font-size: 14px; color: #60a5fa; font-weight: 500; }
+    .section { padding: 20px 24px; border-bottom: 1px solid #1e293b; }
+    .section-title { font-size: 16px; font-weight: 700; color: #f8fafc; margin: 0 0 14px 0; display: flex; align-items: center; gap: 8px; }
+    .section-icon { font-size: 18px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+    .tag-must { background: #7f1d1d; color: #fca5a5; }
+    .tag-deal { background: #14532d; color: #86efac; }
+    .tag-market { background: #1e3a5f; color: #93c5fd; }
+    .tag-high { background: #4c1d95; color: #c4b5fd; }
+    .tag-watch { background: #713f12; color: #fde68a; }
+    .headline { font-size: 14px; font-weight: 600; color: #f1f5f9; line-height: 1.5; margin: 0 0 6px 0; }
+    .body-text { font-size: 13px; color: #cbd5e1; line-height: 1.7; margin: 0 0 16px 0; }
+    .body-text:last-child { margin-bottom: 0; }
+    .highlight { color: #60a5fa; font-weight: 500; }
+    .divider { border: none; border-top: 1px solid #334155; margin: 14px 0; }
+    .metrics-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .metric-box { flex: 1; min-width: 120px; background: #1e293b; border-radius: 8px; padding: 12px; text-align: center; border: 1px solid #334155; }
+    .metric-name { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+    .metric-value { font-size: 16px; font-weight: 700; }
+    .metric-change { font-size: 12px; margin-top: 2px; }
+    .up { color: #f87171; }      /* A股/港股红涨 */
+    .down { color: #4ade80; }    /* A股/港股绿跌 */
+    .up-us { color: #4ade80; }   /* 美股绿涨 */
+    .down-us { color: #f87171; } /* 美股红跌 */
+    .market-tone { background: #1e293b; border-left: 4px solid #3b82f6; padding: 10px 14px; font-size: 13px; color: #e2e8f0; border-radius: 0 6px 6px 0; }
+    .news-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #1e293b; }
+    .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .news-source { font-size: 11px; color: #64748b; margin-top: 4px; }
+    .news-link { color: #60a5fa; text-decoration: none; }
+    .news-link:hover { text-decoration: underline; }
+    .deal-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .deal-table th { background: #1e293b; color: #94a3b8; padding: 8px; text-align: left; font-weight: 600; border-bottom: 2px solid #334155; }
+    .deal-table td { padding: 8px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+    .deal-table tr:last-child td { border-bottom: none; }
+    .sector-box { background: #1e293b; border-radius: 8px; padding: 14px; margin-bottom: 10px; border: 1px solid #334155; }
+    .sector-name { font-size: 14px; font-weight: 700; color: #f8fafc; margin: 0 0 6px 0; }
+    .catalyst-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .catalyst-table th { background: #1e293b; color: #94a3b8; padding: 8px; text-align: left; font-weight: 600; border-bottom: 2px solid #334155; }
+    .catalyst-table td { padding: 8px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+    .banker-take { background: linear-gradient(135deg, #1e293b 0%, #1a365d 100%); border-left: 4px solid #f59e0b; padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; color: #f8fafc; line-height: 1.8; font-style: italic; }
+    .footer { padding: 20px 24px; text-align: center; font-size: 11px; color: #64748b; }
+    .footer a { color: #60a5fa; text-decoration: none; }
+    .star-rating { color: #fbbf24; font-size: 12px; }
+    .item-label { font-size: 12px; color: #60a5fa; font-weight: 600; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>📊 TMT MORNING BRIEF</h1>
+        <div class="subtitle">Investment Banking Daily Intelligence</div>
+        <div class="date">2026-07-07 周二 | Generated at 09:04</div>
+    </div>
+
+    <!-- Capital Market Dashboard -->
+    <div class="section">
+        <div class="section-title"><span class="section-icon">📈</span> Capital Market Dashboard <span class="star-rating">★★★★</span></div>
+        <div class="market-tone">📊 <strong>Market Tone:</strong> Mixed | 市场分化，结构性机会为主</div>
+    </div>
+
+    <!-- Sector Watch -->
+    <div class="section">
+        <div class="section-title"><span class="section-icon">📊</span> Sector Watch <span class="star-rating">★★★</span></div>
+        <div class="sector-box">
+            <div class="sector-name">Artificial Intelligence</div>
+            <div class="body-text"><span class="item-label">Summary:</span>AI基础设施投资持续活跃，大模型商业化加速</div>
+            <div class="body-text"><span class="item-label">Capital Market Impact:</span><span class="highlight">AI相关IPO和私募融资保持高估值，算力芯片需求驱动半导体板块</span></div>
+        </div>
+        <div class="sector-box">
+            <div class="sector-name">Semiconductor</div>
+            <div class="body-text"><span class="item-label">Summary:</span>全球半导体周期复苏信号增强，国产替代逻辑持续</div>
+            <div class="body-text"><span class="item-label">Capital Market Impact:</span><span class="highlight">设备材料类公司融资活跃，关注科创板和港股18C章节IPO</span></div>
+        </div>
+        <div class="sector-box">
+            <div class="sector-name">Cloud & Enterprise Software</div>
+            <div class="body-text"><span class="item-label">Summary:</span>企业数字化转型需求稳健，SaaS公司盈利能力改善</div>
+            <div class="body-text"><span class="item-label">Capital Market Impact:</span><span class="highlight">软件公司并购估值回升，私有化交易增加</span></div>
+        </div>
+    </div>
+
+    <!-- Banker's Take -->
+    <div class="section">
+        <div class="section-title"><span class="section-icon">💡</span> Banker's Take <span class="star-rating">★★★★★</span></div>
+        <div class="banker-take">
+            市场震荡格局下结构性机会突出，建议聚焦AI、半导体等高景气赛道的配售和定增项目。密切关注监管政策动向，提前布局潜在的政策受益板块。
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>TMT Morning Brief | Generated automatically by <a href="#">tmt-ib-morning-brief</a> skill</p>
+        <p>Data sources: East Money, Yahoo Finance, NewsAPI | For reference only, not investment advice</p>
+        <p style="margin-top: 8px; color: #475569;">2026-07-07 09:04</p>
+    </div>
+</div>
+</body>
+</html>

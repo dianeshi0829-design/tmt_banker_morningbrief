@@ -1,0 +1,5 @@
+# TMT Morning Brief - Python Dependencies
+# 标准库外无额外依赖，保持轻量
+
+# HTTP请求（Python标准库 urllib 备选）
+requests>=2.31.0
