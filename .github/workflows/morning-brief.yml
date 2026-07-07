@@ -1,0 +1,88 @@
+name: TMT Morning Brief - Daily Generation & Push
+
+on:
+  # 每天早上8:00 UTC+8 运行 (对应 UTC 00:00)
+  schedule:
+    - cron: '0 0 * * 1-5'  # 周一至周五 UTC 00:00 = 北京时间 8:00
+  
+  # 允许手动触发
+  workflow_dispatch:
+    inputs:
+      generate_only:
+        description: '仅生成不推送'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  generate-brief:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Step 2: Setup Python
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # Step 4: Generate and send brief
+      - name: Generate & Send Morning Brief
+        env:
+          # 邮件配置 (必填)
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          
+          # NewsAPI (可选，建议配置)
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          
+          # 微信推送 (可选)
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+          WECHAT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK }}
+          
+          # 开关
+          ENABLE_EMAIL: ${{ secrets.ENABLE_EMAIL || 'true' }}
+          ENABLE_WECHAT: ${{ secrets.ENABLE_WECHAT || 'false' }}
+        run: |
+          if [ "${{ github.event.inputs.generate_only }}" == "true" ]; then
+            python main.py --generate-only
+          else
+            python main.py
+          fi
+      
+      # Step 5: Archive generated briefs
+      - name: Archive Briefs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: morning-briefs-${{ github.run_date || github.run_id }}
+          path: |
+            output/brief_*.html
+            output/brief_*.json
+            output/brief_*.txt
+          retention-days: 30
+      
+      # Step 6: Commit brief history to repository (可选)
+      - name: Commit Brief History
+        if: false  # 设置为 true 如果需要提交到仓库保存历史
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add output/ || true
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add morning brief for $(date +%Y-%m-%d)"
+          git push || true
